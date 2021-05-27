@@ -5,6 +5,7 @@ import Controller from './interfaces/controller.interface'
 import errorMiddleware from './middleware/error.middleware'
 const cookieParser = require('cookie-parser')  
 const cors = require('cors')
+// const mongoose = require('mongoose')
 
 class App {
   public app: express.Application;
@@ -33,7 +34,7 @@ class App {
     this.app.use(cookieParser())
     this.app.use(express.static('public/post_images'))
     this.app.use(session({
-        secret: 'keyboard cat',
+        secret: 'JJASJJSD73423432',
         resave: false,
         saveUninitialized: true,
         cookie: { secure: true }
@@ -54,17 +55,17 @@ class App {
 
     
   // connect to database
-//   private connectDB = async ()=>{
-//     const connect = await mongoose.connect(process.env.ATLAS_URI,{
-//         useNewUrlParser: true,
-//         useUnifiedTopology: true,
-//         useCreateIndex: true
-//     }).then(()=>{
-//         console.log(`MongoDB database connection established successfully`);
-//     }).catch((error)=>{
-//         console.log("MongoDB not connected");
-//         console.log(error);
-//     });
+  // private connectDB = async ()=>{
+  //   const connect = await mongoose.connect(process.env.ATLAS_URI,{
+  //       useNewUrlParser: true,
+  //       useUnifiedTopology: true,
+  //       useCreateIndex: true
+  //   }).then(()=>{
+  //       console.log(`MongoDB database connection established successfully`);
+  //   }).catch((error)=>{
+  //       console.log("MongoDB not connected");
+  //       console.log(error);
+  //   });
 // }
 
 }
