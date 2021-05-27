@@ -1,6 +1,7 @@
 import { Sequelize, Model, DataTypes } from "sequelize"
 
-const sequelize = new Sequelize("mysql://root:asd123@localhost:3306/mydb")
+const sequelize = new Sequelize("mysql://mhope:NpontuTestPassword@localhost:3306/mariadolldb")
+
 
 class Products extends Model {
   public id!: number
@@ -38,6 +39,7 @@ Products.init(
     del_flag: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
+      defaultValue: false,
     },
   },
   {
@@ -47,17 +49,7 @@ Products.init(
   }
 )
 
-async function doStuffWithUserModel() {
-  const newProduct = await Products.create({
-    location_name: "Johnny",
-    preferredName: "John",
-  })
-  console.log(newProduct)
 
-  const foundProduct = await Products.findOne({ where: { name: "Johnny" } })
-  if (foundProduct === null) return
-  console.log(foundProduct)
-}
 
 
 export default Products

@@ -14,7 +14,7 @@ class App {
     this.app = express();
  
     // call class methods
-    this.connectDB();
+    // this.connectDB();
     this.initializeMiddleware();
     this.initializeControllers(controllers);
     this.initializeErrorHandling();
@@ -55,18 +55,19 @@ class App {
 
     
   // connect to database
-  private connectDB = async ()=>{
-    const connect = await mongoose.connect(process.env.ATLAS_URI,{
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-        useCreateIndex: true
-    }).then(()=>{
-        console.log(`MongoDB database connection established successfully`);
-    }).catch((error)=>{
-        console.log("MongoDB not connected");
-        console.log(error);
-    });
-}
+//   private connectDB = async ()=>{
+//     const connect = await mongoose.connect(process.env.ATLAS_URI,{
+//         useNewUrlParser: true,
+//         useUnifiedTopology: true,
+//         useCreateIndex: true
+//     }).then(()=>{
+//         console.log(`MongoDB database connection established successfully`);
+//     }).catch((error)=>{
+//         console.log("MongoDB not connected");
+//         console.log(error);
+//     });
+// }
+
 }
  
 export default App;
