@@ -1,6 +1,5 @@
 import { Sequelize, Model, DataTypes } from "sequelize"
-
-const sequelize = new Sequelize("mysql://mhope:NpontuTestPassword@localhost:3306/mariadolldb")
+const sequelize = require('../config/db')
 
 
 class Products extends Model {
@@ -49,7 +48,7 @@ Products.init(
   }
 )
 
-
+Products.sync()
 
 
 export default Products

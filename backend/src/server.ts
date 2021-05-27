@@ -7,8 +7,8 @@ import App from './app'
 
 // get env variables
 dotenv.config({
-  path:'./src/config/.env'
-});
+  path:'./config/.env'
+})
 
 // validate env variables
 validateEnv();

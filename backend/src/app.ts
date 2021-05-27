@@ -4,7 +4,6 @@ import session from 'express-session'
 import Controller from './interfaces/controller.interface'
 import errorMiddleware from './middleware/error.middleware'
 const cookieParser = require('cookie-parser')  
-const mongoose = require('mongoose')
 const cors = require('cors')
 
 class App {
