@@ -60,9 +60,10 @@
         
       </tbody>
     </q-markup-table>
-    </q-card-section>
 
-    
+      <q-btn  v-on:click="refresh" id="refreshBtn" round color="primary" icon="refresh" />
+
+    </q-card-section>
       
     </q-card>
 
@@ -70,6 +71,11 @@
 </template>
 
 <style>
+#refreshBtn{
+   float: right;
+}
+
+
 #products {
   font-weight: bold;
   font-size: 20px;
@@ -105,9 +111,15 @@ export default {
             this.products = response.data
           })
     .catch(err => {
-        console.log("ERROR reading data from API dur to: ", err)
+        console.log("ERROR reading data from API due to: ", err)
     })
 
+  },
+
+  methods: {
+    refresh: () => {
+      window.location.reload();
+    }
   }
 
 }

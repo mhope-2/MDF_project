@@ -43,7 +43,7 @@
         </q-item>
         <q-item clickable tag="a" target="_blank" href="#">
           <q-item-section avatar>
-            <q-icon name="code" />
+            <q-icon name="view_list" />
           </q-item-section>
           <q-item-section>
             <q-item-label>Order Upcoming</q-item-label>
@@ -61,7 +61,7 @@
         </q-item>
         <q-item clickable tag="a" target="_blank" href="#">
           <q-item-section avatar>
-            <q-icon name="forum" />
+            <q-icon name="directions_car" />
           </q-item-section>
           <q-item-section>
             <q-item-label>Delivery Form</q-item-label>
@@ -81,7 +81,7 @@
         <q-item-label header>INVENTORY</q-item-label>
         <q-item clickable tag="a" target="_blank" href="#">
           <q-item-section avatar>
-            <q-icon name="rss_feed" />
+            <q-icon name="house_siding" />
           </q-item-section>
           <q-item-section>
             <q-item-label>Catalog</q-item-label>
@@ -90,7 +90,7 @@
         </q-item>
         <q-item clickable tag="a" target="_blank" href="#">
           <q-item-section avatar>
-            <q-icon name="rss_feed" />
+            <q-icon name="shopping_basket" />
           </q-item-section>
           <q-item-section>
             <q-item-label>Promotions</q-item-label>
@@ -99,7 +99,7 @@
         </q-item>
         <q-item clickable tag="a" target="_blank" href="#">
           <q-item-section avatar>
-            <q-icon name="rss_feed" />
+            <q-icon name="swap_vert" />
           </q-item-section>
           <q-item-section>
             <q-item-label>Import From Square</q-item-label>
@@ -110,7 +110,7 @@
         <q-item-label header>STATISTICS</q-item-label>
         <q-item clickable tag="a" target="_blank" href="javascript:void(0)">
           <q-item-section avatar>
-            <q-icon name="rss_feed" />
+            <q-icon name="bar_chart" />
           </q-item-section>
           <q-item-section>
             <q-item-label>Delivery Main</q-item-label>
