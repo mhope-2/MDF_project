@@ -49,46 +49,21 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td class="text-left">Frozen Yogurt</td>
-          <td class="text-right">159</td>
-          <td class="text-right">6</td>
-          <td class="text-right">24</td>
-          <td class="text-right">4</td>
+        <tr v-for="(product) in products" :key="product.id">
+
+          <td class="text-left">{{product.id}}</td>
+          <td class="text-right">{{product.catalog_name}}</td>
+          <td class="text-right">{{product.color}}</td>
+          <td class="text-right">{{product.size}}</td>
+          <td class="text-right">{{product.quantity}}</td>
         </tr>
-        <tr>
-          <td class="text-left">Ice cream sandwich</td>
-          <td class="text-right">237</td>
-          <td class="text-right">9</td>
-          <td class="text-right">37</td>
-          <td class="text-right">4.3</td>
-        </tr>
-        <tr>
-          <td class="text-left">Eclair</td>
-          <td class="text-right">262</td>
-          <td class="text-right">16</td>
-          <td class="text-right">23</td>
-          <td class="text-right">6</td>
-        </tr>
-        <tr>
-          <td class="text-left">Cupcake</td>
-          <td class="text-right">305</td>
-          <td class="text-right">3.7</td>
-          <td class="text-right">67</td>
-          <td class="text-right">4.3</td>
-        </tr>
-        <tr>
-          <td class="text-left">Gingerbread</td>
-          <td class="text-right">356</td>
-          <td class="text-right">16</td>
-          <td class="text-right">49</td>
-          <td class="text-right">3.9</td>
-        </tr>
+        
       </tbody>
     </q-markup-table>
+    </q-card-section>
 
-
-      </q-card-section>
+    
+      
     </q-card>
 
   </q-page>
@@ -107,6 +82,8 @@
 </style>
 
 <script>
+const axios = require('axios').default
+
 export default {
   name: 'HelloWorld',
 
@@ -114,11 +91,24 @@ export default {
     return {
       left: true,
       right: false,
+      model: null,
+      separator: 'cell',
 
-       model: null,
+      products: []
 
-       separator: 'cell'
     }
+  },
+
+  mounted(){
+    axios.get(`/api/products`)
+    .then(response => {
+            this.products = response.data
+          })
+    .catch(err => {
+        console.log("ERROR reading data from API dur to: ", err)
+    })
+
   }
+
 }
 </script>

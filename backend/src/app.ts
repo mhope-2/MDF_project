@@ -50,21 +50,28 @@ class App {
   private initializeControllers(controllers: Controller[]) {
     controllers.forEach((controller) => {
       this.app.use('/api', controller.router);
-    });
+    })
   }
 
     
   // connect to database
-  private connectDB = async ()=>{
-    try {
-      await sequelize.authenticate();
-      console.log('MySQL DB Connection has been established successfully.');
-    } catch (error) {
-      console.error('Unable to connect to the database due to:', error);
-    }
-    
-}
+  private connectDB = async () => {
+
+    await sequelize.authenticate()
+    .then(() => {
+      console.log(`MySQL database connection to ${process.env.DATABASE} successful`)
+    })
+    .catch((err) => {
+      console.error(`MySQL database connection to ${process.env.DATABASE} UNSUCCESSFUL due to `, err);
+    })
+
+  }
+
 
 }
+
+    
+    
+    
  
-export default App;
+export default App

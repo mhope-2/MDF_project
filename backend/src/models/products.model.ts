@@ -27,6 +27,10 @@ Products.init(
       type: DataTypes.STRING(255),
       allowNull: false,
     },
+    color: {
+      type: DataTypes.STRING(255),
+      allowNull: false,
+    },
     size: {
       type: DataTypes.STRING(255),
       allowNull: false,

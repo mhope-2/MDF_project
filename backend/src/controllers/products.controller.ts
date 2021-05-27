@@ -24,10 +24,10 @@ class ProductsController implements Controller {
 
     // list all posts
     private productList = async (req:express.Request, res:express.Response) => {
-      res.send({"Res":"OK"})
-      // await this.products.findAll()
-      // .then(products => res.json(products))
-      // .catch(err => res.status(400).json('Error: ' + err)) 
+      
+      await this.products.findAll()
+      .then(products => res.json(products))
+      .catch(err => res.status(400).json('Error: ' + err)) 
 
       }    
 

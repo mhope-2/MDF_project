@@ -3,8 +3,6 @@ import validateEnv from './utils/validateEnv'
 import ProductsController from './controllers/products.controller'
 import App from './app'
 
-console.log(process.env)
-
 console.log(__dirname)
 require('dotenv').config({path:__dirname + `/config/.env`})
 
