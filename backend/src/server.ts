@@ -3,11 +3,10 @@ import validateEnv from './utils/validateEnv'
 import ProductsController from './controllers/products.controller'
 import App from './app'
 
-// get env variables
-// dotenv.config({
-//   path:'./config/.env'
-// })
-require('dotenv').config({path:`./config/.env`})
+console.log(process.env)
+
+console.log(__dirname)
+require('dotenv').config({path:__dirname + `/config/.env`})
 
 
 // validate env variables
