@@ -5,7 +5,7 @@ import Controller from './interfaces/controller.interface'
 import errorMiddleware from './middleware/error.middleware'
 const cookieParser = require('cookie-parser')  
 const cors = require('cors')
-// const mongoose = require('mongoose')
+const sequelize = require('./config/db')
 
 class App {
   public app: express.Application;
@@ -14,7 +14,7 @@ class App {
     this.app = express();
  
     // call class methods
-    // this.connectDB();
+    this.connectDB();
     this.initializeMiddleware();
     this.initializeControllers(controllers);
     this.initializeErrorHandling();
@@ -55,18 +55,15 @@ class App {
 
     
   // connect to database
-  // private connectDB = async ()=>{
-  //   const connect = await mongoose.connect(process.env.ATLAS_URI,{
-  //       useNewUrlParser: true,
-  //       useUnifiedTopology: true,
-  //       useCreateIndex: true
-  //   }).then(()=>{
-  //       console.log(`MongoDB database connection established successfully`);
-  //   }).catch((error)=>{
-  //       console.log("MongoDB not connected");
-  //       console.log(error);
-  //   });
-// }
+  private connectDB = async ()=>{
+    try {
+      await sequelize.authenticate();
+      console.log('MySQL DB Connection has been established successfully.');
+    } catch (error) {
+      console.error('Unable to connect to the database due to:', error);
+    }
+    
+}
 
 }
  
