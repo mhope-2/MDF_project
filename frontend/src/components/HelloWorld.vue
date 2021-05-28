@@ -133,9 +133,13 @@ export default {
       const inputFileExtension = inputFileName.split('.')[1]
       const inputFile = this.$refs['inputFile'].$refs.input
 
+
       if ( inputFileExtension == 'xlsx' || inputFileExtension == 'xls' ){
             readXlsxFile(inputFile.files[0]).then((rows) => {
-            console.log(rows[0])
+              
+            for(let row of rows.slice(1,rows.length+1)){
+                this.products.push({"id":row[0], "catalog_name":row[1], "color":row[2], "size": row[3], "quantity":row[4]})
+            } 
         })
       } else{
             alert("only excel files are allowed")
