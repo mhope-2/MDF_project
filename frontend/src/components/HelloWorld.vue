@@ -48,7 +48,8 @@
           <th class="text-right" style="background-color: black; color: white;">Quantity</th>
         </tr>
       </thead>
-      <tbody>
+
+      <tbody v-if="products" >
         <tr v-for="(product) in products" :key="product.id">
 
           <td class="text-left">{{product.id}}</td>
@@ -59,6 +60,7 @@
         </tr>
         
       </tbody>
+
     </q-markup-table>
 
       <q-btn  v-on:click="refresh" id="refreshBtn" round color="primary" icon="refresh" />
@@ -101,12 +103,14 @@ export default {
       model: null,
       separator: 'cell',
       search: "",
-      products: []
+
+      products: [],
 
     }
   },
 
   mounted(){
+    // fetch data from db
     axios.get(`/api/products`)
     .then(response => {
             this.products = response.data
@@ -118,16 +122,18 @@ export default {
   },
 
   methods: {
+    // refresh data (fetch from db)
     refresh: () => {
       window.location.reload();
     },
-    
 
   },
+  
 
   watch: {
-    model: function(){
-      console.log("WATCH: CHANGED")
+    // set watch on file field for change
+    model() {
+      console.log("FILE INPUT: CHANGED")
 
       const inputFileName = this.$refs['inputFile'].$refs.input.files[0].name
       const inputFileExtension = inputFileName.split('.')[1]
@@ -136,7 +142,11 @@ export default {
 
       if ( inputFileExtension == 'xlsx' || inputFileExtension == 'xls' ){
             readXlsxFile(inputFile.files[0]).then((rows) => {
-              
+             
+            // set product to empty array in order to load data from file with 
+            this.products=[]
+
+            // load file data into products array then to table (data should follw given format)
             for(let row of rows.slice(1,rows.length+1)){
                 this.products.push({"id":row[0], "catalog_name":row[1], "color":row[2], "size": row[3], "quantity":row[4]})
             } 
@@ -144,8 +154,12 @@ export default {
       } else{
             alert("only excel files are allowed")
       }
+    },
 
-
+    search(){
+      this.products = this.products.filter((item)=>{
+        return ( item.color.startsWith(this.search) || item.size.startsWith(this.search) || item.catalog_name.startsWith(this.search))
+      })
     }
   }
 
