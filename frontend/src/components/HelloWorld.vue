@@ -19,11 +19,11 @@
       </q-input>
 
       <div class="q-gutter-sm">
-          <q-checkbox v-model="right" label="Label on Right" />
+          <q-checkbox v-model="right" label="Include inactive" />
       </div>
 
         <!-- File Upload -->
-       <q-file filled bottom-slots v-model="model" style="max-width: 400px;"  label="IMPORT NEW SKU(S)" counter>
+       <q-file filled bottom-slots v-model="model" ref="inputFile" style="max-width: 400px;"  label="IMPORT NEW SKU(S)" counter>
         <template v-slot:prepend>
           <q-icon name="insert_drive_file" @click.stop />
         </template>
@@ -89,6 +89,7 @@
 
 <script>
 const axios = require('axios').default
+import readXlsxFile from 'read-excel-file'
 
 export default {
   name: 'HelloWorld',
@@ -99,7 +100,7 @@ export default {
       right: false,
       model: null,
       separator: 'cell',
-
+      search: "",
       products: []
 
     }
@@ -119,6 +120,28 @@ export default {
   methods: {
     refresh: () => {
       window.location.reload();
+    },
+    
+
+  },
+
+  watch: {
+    model: function(){
+      console.log("WATCH: CHANGED")
+
+      const inputFileName = this.$refs['inputFile'].$refs.input.files[0].name
+      const inputFileExtension = inputFileName.split('.')[1]
+      const inputFile = this.$refs['inputFile'].$refs.input
+
+      if ( inputFileExtension == 'xlsx' || inputFileExtension == 'xls' ){
+            readXlsxFile(inputFile.files[0]).then((rows) => {
+            console.log(rows[0])
+        })
+      } else{
+            alert("only excel files are allowed")
+      }
+
+
     }
   }
 
