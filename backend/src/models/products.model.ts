@@ -12,6 +12,7 @@ class Products extends Model {
   public del_flag!: boolean
 }
 
+
 Products.init(
   {
     id: {
